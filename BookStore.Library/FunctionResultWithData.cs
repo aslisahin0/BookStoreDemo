@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace BookStore.Library
 {
-    public class ValidationMessage
+    public class FunctionResultWithData<T> : FunctionResult
     {
-        public string PropertyName { get; set; }
-
-        public string Message { get; set; }
+        public T Data { get; set; }
     }
 }

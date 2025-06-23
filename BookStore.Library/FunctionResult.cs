@@ -6,10 +6,14 @@ using System.Threading.Tasks;
 
 namespace BookStore.Library
 {
-    public class ValidationMessage
+    public class FunctionResult
     {
-        public string PropertyName { get; set; }
+        public bool IsSuccess { get; set; }
 
         public string Message { get; set; }
+
+        public string ExceptionMessage { get; set; }
+
+        public List<ValidationMessage> ValidationMessages { get; set; }
     }
 }
