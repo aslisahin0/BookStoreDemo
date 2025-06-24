@@ -11,6 +11,7 @@ namespace BookStore.Application.Interfaces.Service
     {
         Task<IEnumerable<BookDto>> GetAllAsync();
         Task<BookDto?> GetByIdAsync(int id);
+        Task<IEnumerable<BookDto>> GetByCategoryAsync(int categoryId);
         Task<CreateBookDto> CreateAsync(CreateBookDto dto);
         Task<bool> UpdateAsync(int id, UpdateBookDto dto);
         Task<bool> DeleteAsync(int id);

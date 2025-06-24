@@ -19,12 +19,12 @@ namespace BookStore.Infrastructure.Services
             _mapper = mapper;
         }
 
-        public async Task<CreateCategoryDto> CreateAsync(CreateCategoryDto dto)
+        public async Task<CategoryDto> CreateAsync(CreateCategoryDto dto)
         {
             var entity = _mapper.Map<Category>(dto);
             await _unitOfWork.CategoryRepository.AddAsync(entity);
             await _unitOfWork.SaveChangesAsync();
-            return _mapper.Map<CreateCategoryDto>(entity);
+            return _mapper.Map<CategoryDto>(entity);
         }
 
         public async Task<bool> DeleteAsync(int id)

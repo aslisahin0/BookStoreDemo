@@ -45,7 +45,16 @@ namespace BookStore.Infrastructure.Services
             return _mapper.Map<IEnumerable<BookDto>>(books);
         }
 
-        public  async Task<BookDto?> GetByIdAsync(int id)
+        public async Task<IEnumerable<BookDto>> GetByCategoryAsync(int categoryId)
+        {
+            var category = await _unitOfWork.CategoryRepository.GetByIdAsync(categoryId);
+            if (category == null) return null;
+
+            var books = await _unitOfWork.BookRepository.GetByCategoryAsync(categoryId);
+            return _mapper.Map<IEnumerable<BookDto>>(books);
+        }
+
+        public async Task<BookDto?> GetByIdAsync(int id)
         {
             var book = await _unitOfWork.BookRepository.GetByIdAsync(id);
             return _mapper.Map<BookDto>(book);

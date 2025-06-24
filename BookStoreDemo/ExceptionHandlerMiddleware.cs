@@ -19,7 +19,7 @@ namespace BookStoreDemo
             }
             catch (UnauthorizedAccessException ex)
             {
-                await HandleException(httpContext, HttpStatusCode.Unauthorized, "Yetkisiz işlem yapılamaz.", ex);
+                await HandleException(httpContext, HttpStatusCode.Unauthorized, "Bu işlemi gerçekleştirmek için giriş yapmanız gerekiyor.", ex);
             }
             catch (TimeoutException ex)
             {
@@ -27,7 +27,7 @@ namespace BookStoreDemo
             }
             catch (Exception ex)
             {
-                await HandleException(httpContext, HttpStatusCode.InternalServerError, "Sistemsel bir hata oluştu.", ex);
+                await HandleException(httpContext, HttpStatusCode.InternalServerError, "Sistemsel bir hata oluştu. Lütfen daha sonra tekrar deneyin.", ex);
             }
         }
 
