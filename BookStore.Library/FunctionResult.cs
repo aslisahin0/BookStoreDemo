@@ -14,6 +14,5 @@ namespace BookStore.Library
 
         public string ExceptionMessage { get; set; }
 
-        public List<ValidationMessage> ValidationMessages { get; set; }
     }
 }
