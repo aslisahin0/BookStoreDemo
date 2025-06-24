@@ -21,14 +21,14 @@ namespace BookStoreDemo.Controllers
             return Ok(token);
         }
 
-        [HttpPost("validate")]
+        [HttpPost("Validate")]
         public IActionResult Validate([FromBody] string token)
         {
             var isValid = _tokenService.ValidateToken(token);
             if (isValid)
-                return Ok(new { Message = "Token is valid" });
+                return Ok(new { Message = "Geçerli token." });
             else
-                return Unauthorized(new { Message = "Invalid token" });
+                return Unauthorized(new { Message = "Geçersiz token." });
         }
     }
 }

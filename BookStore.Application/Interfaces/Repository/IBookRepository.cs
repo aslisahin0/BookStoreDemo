@@ -9,5 +9,6 @@ namespace BookStore.Application.Interfaces.Repository
 {
     public interface IBookRepository : IRepository<Book>
     {
+        Task<IEnumerable<Book>> GetByCategoryAsync(int categoryId);
     }
 }

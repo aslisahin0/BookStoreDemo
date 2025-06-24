@@ -11,7 +11,6 @@ using System.Threading.Tasks;
     {
     public MappingProfile()
     {
-        // birebir eşleşme olduğundan ReverseMap kullanabiliriz
         CreateMap<Category, CategoryDto>().ReverseMap();
         CreateMap<Category, CreateCategoryDto>().ReverseMap();
         CreateMap<Category, UpdateCategoryDto>().ReverseMap();

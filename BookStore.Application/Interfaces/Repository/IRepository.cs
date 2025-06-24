@@ -11,7 +11,6 @@ namespace BookStore.Application.Interfaces.Repository
     {
         Task<T> GetByIdAsync(int id);
         Task<IEnumerable<T>> GetAllAsync();
-
         Task<T?> Get(Expression<Func<T, bool>> predicate); //Şarta göre kayıt getirir
         Task AddAsync(T entity);
         void Update(T entity);

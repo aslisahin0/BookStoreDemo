@@ -15,6 +15,24 @@ namespace BookStore.Infrastructure.Repositories
         public BookRepository(AppDbContext context) : base(context)
         {
         }
+
+        public override async Task<IEnumerable<Book>> GetAllAsync()
+        {
+            return await _context.Books.Include(b => b.Category).ToListAsync();
+        }
+
+        public async Task<IEnumerable<Book>> GetByCategoryAsync(int categoryId)
+        {
+            return await _context.Books
+                .Where(b => b.CategoryId == categoryId)
+                .Include(b => b.Category)
+                .ToListAsync();
+        }
+
+        public override async Task<Book> GetByIdAsync(int id)
+        {
+            return await _context.Books.Include(b => b.Category).FirstOrDefaultAsync(b => b.Id == id);
+        }
     }
 
 
