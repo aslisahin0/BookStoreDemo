@@ -80,8 +80,7 @@ Buradan tüm API uç noktalarını test edebilirsiniz.
 
 - Application        → DTO'lar ve Interface'ler
 
- - Core
-
+- Core
  BookStore.Core.     → Entity tanımları
  BookStore.Library   → Hata yönetimi, yardımcı sınıflar
 
@@ -89,8 +88,7 @@ Buradan tüm API uç noktalarını test edebilirsiniz.
 
 - Presentation      → API katmanı (Controller, Middleware, JWT)
 
-- Tests            → Test Katmanı(xUnit ile Unit Testler)
-BookStore.Tests   
+- Tests            → Test Katmanı(xUnit ile Unit Testler)  
 ---
 
 ### 🔐 JWT Authentication
@@ -148,10 +146,9 @@ Sağ tıklayıp "Run All Tests" seçeneğini seçin.
 
 ### 📁 Test Klasörü Yapısı
 
-BookStore.Tests/
-│
-└── Services/
-    └── BookServiceTests.cs  → BookService’e ait bazı test senaryoları
+- BookStore.Tests
+Services
+ BookServiceTests.cs  → BookService’e ait bazı test senaryoları
     
 Arrange → Act → Assert mantığıyla test senaryoları yapılandırılmıştır.
 
