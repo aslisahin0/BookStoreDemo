@@ -146,9 +146,7 @@ Sağ tıklayıp "Run All Tests" seçeneğini seçin.
 
 ### 📁 Test Klasörü Yapısı
 
-- BookStore.Tests
-Services
- BookServiceTests.cs  → BookService’e ait bazı test senaryoları
+- BookStore.Tests/Services/BookServiceTests.cs  → BookService’e ait bazı test senaryoları
     
 Arrange → Act → Assert mantığıyla test senaryoları yapılandırılmıştır.
 
