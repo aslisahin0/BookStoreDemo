@@ -12,6 +12,7 @@ namespace BookStoreDemo.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
+    [AllowAnonymous]
     public class BookController : ControllerBase
     {
         private readonly IBookService _bookService;
