@@ -81,6 +81,7 @@ Buradan tüm API uç noktalarını test edebilirsiniz.
 - Application        → DTO'lar ve Interface'ler
 
  - Core
+
  BookStore.Core.     → Entity tanımları
  BookStore.Library   → Hata yönetimi, yardımcı sınıflar
 
