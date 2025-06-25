@@ -80,44 +80,19 @@ Buradan tüm API uç noktalarını test edebilirsiniz.
 
 BookStoreDemo/
 │
-├── Application/                    → DTO'lar ve Interface'ler
-│   └── BookStore.Application/  
-│       ├── DTOs/
-│       └── Interfaces/
-│           ├── Repository/
-│           └── Service/
-│       └── IUnitOfWork.cs
+├── Application/             → DTO'lar ve Interface'ler
 
 ├── Core/
-│   └── BookStore.Core/            → Entity tanımları
-│       └── Entities/
+│   └── BookStore.Core/     → Entity tanımları
 
-│   └── BookStore.Library/         → Hata yönetimi, yardımcı sınıflar 
-│       └──      
+│   └── BookStore.Library/  → Hata yönetimi, yardımcı sınıflar
 
-├── Infrastructure/                → EF Core, Repository,Servisler, DbContext
-│   └── BookStore.Infrastructure/ 
-│       ├── Data/
-│       ├── Migrations/
-│       ├── Profile/
-│       ├── Repositories/
-│       └── Services/
+├── Infrastructure/         → EF Core, Repository, Servisler, DbContext
 
-├── Presentation/                  → API katmanı (Controller, Middleware, JWT)
+├── Presentation/           → API katmanı (Controller, Middleware, JWT)
 
-│   └── BookStoreDemo/
-│       ├── Controllers/
- 	 ├── Security/
-│       ├── appsettings.json
-│       ├── ExceptionHandlerMiddleware.cs
-│       ├── Program.cs
-│       └── BookStoreDemo.http
-
-├── Tests/                         → Test Katmanı (xUnit ile Unit Testler)
-│   └── BookStore.Tests/
-│       └── Services/
-│           └── BookServiceTests.cs
-
+├── Tests/                  → Test Katmanı(xUnit ile Unit Testler)
+│   └── BookStore.Tests/    
 ---
 
 ### 🔐 JWT Authentication
@@ -135,14 +110,14 @@ Token'ı aldıktan sonra korumalı endpoint'lere Authorization: Bearer <token> i
 ```
 Metot	     Endpoint	                Açıklama
 GET	    /api/Book/GetAll	        Tüm kitapları getirir
-POST	  /api/Book/Create	        Yeni kitap ekler
+POST	   /api/Book/Create	        Yeni kitap ekler
 PUT	    /api/Book/Update/{id}	    Kitap günceller
 DELETE	/api/Book/Delete/{id} 	  Kitap siler
 GET    	/api/Category/GetAll	    Kategori listesi
 ```
 ---
 
-### 🧪 Unit Testleri Çalıştırma
+### 🧪 Unit Testler
 Projede birim testler, BookStore.Tests projesi altında xUnit kullanılarak yazılmıştır.
 
 ### 1. Gerekli Paketler
