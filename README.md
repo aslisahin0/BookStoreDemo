@@ -179,5 +179,6 @@ BookStore.Tests/
 │
 └── Services/
     └── BookServiceTests.cs  → BookService’e ait bazı test senaryoları
+    
 Arrange → Act → Assert mantığıyla test senaryoları yapılandırılmıştır.
 
