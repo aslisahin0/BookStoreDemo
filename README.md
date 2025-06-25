@@ -1,4 +1,4 @@
-#  Book Store API - .NET Core Backend
+#  BookStoreDemo - .NET Core Backend
 
 Bu proje, kitap ve kategori yönetimini içeren RESTful API altyapısına sahip bir kitap satış sistemidir. Modern yazılım geliştirme prensipleri (SOLID, DTO, Repository Pattern, AutoMapper, JWT) doğrultusunda geliştirilmiştir.
 
@@ -42,7 +42,7 @@ xUnit	                                                 Unit test
 
 ```bash
 git clone <proje-url>
-cd book-store-api
+cd BookStoreDemo
 ```
 ---
 
@@ -67,7 +67,7 @@ Eğer migration daha önce oluşturulmuşsa yalnızca Update-Database yeterlidir
 
 ### 4. Uygulamayı Başlat
 
-Visual Studio üzerinden BookStore.API projesini seçin ve başlatın (F5 veya Ctrl+F5).
+Visual Studio üzerinden BookStoreDemo projesini seçin ve başlatın (F5 veya Ctrl+F5).
 Uygulama aşağıdaki gibi bir endpoint üzerinden çalışır:
 ```
 http://localhost:5092/swagger
