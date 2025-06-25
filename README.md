@@ -1,4 +1,4 @@
-# 📚 Book Store API - .NET Core Backend
+#  Book Store API - .NET Core Backend
 
 Bu proje, kitap ve kategori yönetimini içeren RESTful API altyapısına sahip bir kitap satış sistemidir. Modern yazılım geliştirme prensipleri (SOLID, DTO, Repository Pattern, AutoMapper, JWT) doğrultusunda geliştirilmiştir.
 
