@@ -78,21 +78,18 @@ Buradan tüm API uç noktalarını test edebilirsiniz.
 
 ### 📦  Proje Klasör Yapısı ve Katmanlı Mimari
 
-BookStoreDemo/
-│
-├── Application/             → DTO'lar ve Interface'ler
+- Application        → DTO'lar ve Interface'ler
 
-├── Core/
-│   └── BookStore.Core/     → Entity tanımları
+ - Core
+ BookStore.Core.     → Entity tanımları
+ BookStore.Library   → Hata yönetimi, yardımcı sınıflar
 
-│   └── BookStore.Library/  → Hata yönetimi, yardımcı sınıflar
+- Infrastructure    → EF Core, Repository, Servisler, DbContext
 
-├── Infrastructure/         → EF Core, Repository, Servisler, DbContext
+- Presentation      → API katmanı (Controller, Middleware, JWT)
 
-├── Presentation/           → API katmanı (Controller, Middleware, JWT)
-
-├── Tests/                  → Test Katmanı(xUnit ile Unit Testler)
-│   └── BookStore.Tests/    
+- Tests            → Test Katmanı(xUnit ile Unit Testler)
+BookStore.Tests   
 ---
 
 ### 🔐 JWT Authentication
