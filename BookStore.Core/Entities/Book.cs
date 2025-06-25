@@ -18,7 +18,6 @@ namespace BookStore.Core.Entities
         public string Title { get; set; }
         public string Author { get; set; }
         public decimal Price { get; set; }
-        public DateTime PublishedDate { get; set; }
 
         // Category entitysi ile ilişki
         public Category Category { get; set; }

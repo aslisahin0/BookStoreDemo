@@ -17,7 +17,6 @@ namespace BookStore.Tests.Services
     {
         private readonly Mock<IUnitOfWork> _mockUnitOfWork;
         private readonly Mock<IBookRepository> _mockBookRepo;
-        private readonly Mock<ICategoryRepository> _mockCategoryRepo;
         private readonly Mock<IMapper> _mockMapper;
         private readonly BookService _bookService;
 
