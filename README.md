@@ -56,7 +56,7 @@ appsettings.json içerisindeki DefaultConnection alanını kendi PostgreSQL bilg
 
 Ardından terminalde şu komutu çalıştırarak veritabanını oluşturun:
 Migration Oluşturma (Sadece ilk kurulum için)
-Visual Studio'da Tools > NuGet Package Manager > Package Manager Console menüsüne gidin ve şu komutları çalıştırın:
+Visual Studio'da Tools > Package Manager Console menüsüne gidin ve şu komutları çalıştırın:
 ```
 Add-Migration InitialCreate
 Update-Database
