@@ -19,11 +19,29 @@ namespace BookStore.Infrastructure.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            // Book - Category ilişkisi
             modelBuilder.Entity<Book>()
                 .HasOne(b => b.Category)
                 .WithMany(c => c.Books)
                 .HasForeignKey(b => b.CategoryId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            // Author - Value Object
+            modelBuilder.Entity<Book>()
+                .OwnsOne(b => b.Author, a =>
+                {
+                    a.Property(p => p.FirstName).HasColumnName("AuthorFirstName").IsRequired();
+                    a.Property(p => p.LastName).HasColumnName("AuthorLastName").IsRequired();
+                });
+
+
+            // Price - Value Object
+            modelBuilder.Entity<Book>()
+                .OwnsOne(b => b.Price, p =>
+                {
+                    p.Property(x => x.Amount).HasColumnName("PriceAmount").IsRequired();
+                    p.Property(x => x.Currency).HasColumnName("PriceCurrency").IsRequired();
+                });
         }
     }
 
