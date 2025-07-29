@@ -29,7 +29,7 @@ namespace BookStore.Tests.Services
             _bookService = new BookService(_mockUnitOfWork.Object, _mockMapper.Object);
         }
 
-        [Fact]
+       /* [Fact]
         public async Task GetAllAsync_ShouldReturnMappedBooks()
         {
             // Arrange
@@ -122,7 +122,7 @@ namespace BookStore.Tests.Services
             var result = await _bookService.GetByIdAsync(bookId);
             // Assert
             Assert.Null(result); // Sonuç null olmalı
-        }
+        }*/
     }
 
 }

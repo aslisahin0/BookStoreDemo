@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BookStore.Core.ValueObjects.BookStore.Core.ValueObjects;
 
 namespace BookStore.Core.Entities
 {
@@ -20,23 +21,32 @@ namespace BookStore.Core.Entities
         public int Id { get; private set; }
 
         [ForeignKey("Category")]
-        public int CategoryId { get; set; }
+        public int CategoryId { get; private set; }
         //Public set kullanımı yerine private set tercih ediyoruz çünkü DDD'de Entity'lerin iç durumu dışarıdan kontrolsüzce değişmemeli.
-        public string Title { get; private set; }
-        public Author Author { get; private set; }
-        public Price Price { get; private set; }
+        public string Title { get;  private set; }
+        public Author Author { get;  private set; }
+        public Price Price { get;  private set; }
 
         // Category entitysi ile ilişki  
         public Category Category { get; private set; }
 
-        // Constructor  
 
-        // EF Core için gerekli - dışarıdan kullanılmasını istenmiyorsa private olarak işaretlenebilir.
-        private Book() { }
+        // EF Core için parameterless constructor - protected yaparak sadece persistence layer'ın erişimini sağlıyoruz
+        protected Book() { }
 
-        // DDD'de Entity'lerin oluşturulması için genellikle bir constructor kullanılır.
-        public Book(string title, Author author, Price price, Category category)
+        
+        // Factory method
+        public static Book Create(string title, Author author, Price price, Category category)
         {
+            return new Book(title, author, price, category);
+        }
+        
+        // DDD'de Entity'lerin oluşturulması için genellikle bir constructor kullanılır.
+        private Book(string title, Author author, Price price, Category category)
+        {
+            if (string.IsNullOrWhiteSpace(title))
+                throw new ArgumentException("Kitap başlığı boş olamaz.");
+            
             Title = title;
             Author = author ?? throw new ArgumentNullException(nameof(author));
             Price = price ?? throw new ArgumentNullException(nameof(price));
@@ -46,16 +56,21 @@ namespace BookStore.Core.Entities
 
         public void UpdatePrice(Price newPrice)
         {
-            if (newPrice is null || newPrice.Amount < 0)
-                throw new ArgumentException("Fiyat negatif olamaz.");
-
-            Price = newPrice;
+            Price = newPrice ?? throw new ArgumentNullException(nameof(newPrice));
         }
 
         public void ChangeCategory(Category newCategory)
         {
             Category = newCategory ?? throw new ArgumentNullException(nameof(newCategory));
             CategoryId = newCategory.Id;
+        }
+
+        public void UpdateTitle(string newTitle)
+        {
+            if (string.IsNullOrWhiteSpace(newTitle))
+                throw new ArgumentException("Kitap başlığı boş olamaz.");
+            
+            Title = newTitle;
         }
     }
 }
