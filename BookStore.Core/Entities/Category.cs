@@ -17,17 +17,23 @@ namespace BookStore.Core.Entities
         public string Name { get; set; }
 
         //Book entitysi ile ilişki
-        public ICollection<Book> Books { get; set; } = new List<Book>();
+        public ICollection<Book> Books { get; private set; } = new List<Book>();
 
         // EF Core için boş constructor
-        private Category() { }
+        protected Category() { }
+        
+        // Factory method
+        public static Category Create(string name)
+        {
+            return new Category(name);
+        }
 
         // Ana constructor – kurallar burada uygulanabilir
-        public Category(string name)
+        private Category(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
                 throw new ArgumentException("Kategori adı boş olamaz.");
-
+            
             Name = name;
         }
 
@@ -37,8 +43,13 @@ namespace BookStore.Core.Entities
         {
             if (string.IsNullOrWhiteSpace(newName))
                 throw new ArgumentException("Kategori adı boş olamaz.");
-
+            
             Name = newName;
+        }
+
+        public bool HasBooks()
+        {
+            return Books.Any();
         }
     }
 }

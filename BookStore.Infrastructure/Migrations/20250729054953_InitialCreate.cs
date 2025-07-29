@@ -32,8 +32,10 @@ namespace BookStore.Infrastructure.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     CategoryId = table.Column<int>(type: "integer", nullable: false),
                     Title = table.Column<string>(type: "text", nullable: false),
-                    Author = table.Column<string>(type: "text", nullable: false),
-                    Price = table.Column<decimal>(type: "numeric", nullable: false)
+                    AuthorFirstName = table.Column<string>(type: "text", nullable: false),
+                    AuthorLastName = table.Column<string>(type: "text", nullable: false),
+                    PriceAmount = table.Column<decimal>(type: "numeric", nullable: false),
+                    PriceCurrency = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
