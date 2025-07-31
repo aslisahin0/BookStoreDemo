@@ -20,9 +20,9 @@ builder.Services
     .AddControllers()
     .AddNewtonsoftJson(options =>
     {
-        options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+        options.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver();
+        options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
     });
-
 builder.Services.AddEndpointsApiExplorer();
 
 
@@ -54,6 +54,7 @@ builder.Services.AddSwaggerGen(c =>
             new string[] {}
         }
     });
+    c.UseAllOfToExtendReferenceSchemas();
 });
 
 builder.Services.AddDbContext<AppDbContext>(options =>
