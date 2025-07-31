@@ -53,14 +53,26 @@ namespace BookStoreDemo.Controllers
         [HttpPost("Create")]
         public async Task<IActionResult> Create([FromBody] CreateCategoryDto dto)
         {
-            var result = await _categoryService.CreateAsync(dto);
-            return Ok(new FunctionResultWithData<CategoryDto>
+            try
             {
-                IsSuccess = true,
-                Message = "Kategori başarıyla oluşturuldu.",
-                Data = result
-            });
+                var result = await _categoryService.CreateAsync(dto);
+                return Ok(new FunctionResultWithData<CategoryDto>
+                {
+                    IsSuccess = true,
+                    Message = "Kategori başarıyla oluşturuldu.",
+                    Data = result
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new FunctionResult
+                {
+                    IsSuccess = false,
+                    Message = $"Sistemsel bir hata oluştu: {ex.InnerException?.Message ?? ex.Message}"
+                });
+            }
         }
+
         [HttpPut("Update/{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] UpdateCategoryDto dto)
         {
