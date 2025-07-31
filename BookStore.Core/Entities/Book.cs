@@ -65,6 +65,11 @@ namespace BookStore.Core.Entities
             CategoryId = newCategory.Id;
         }
 
+        public void ChangeAuthor(Author newAuthor)
+        {
+            Author = newAuthor ?? throw new ArgumentNullException(nameof(newAuthor));
+        }
+
         public void UpdateTitle(string newTitle)
         {
             if (string.IsNullOrWhiteSpace(newTitle))

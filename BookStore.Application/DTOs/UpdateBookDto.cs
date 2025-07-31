@@ -9,8 +9,11 @@ namespace BookStore.Application.DTOs
     public class UpdateBookDto
     {
         public string Title { get; set; }
-        public string Author { get; set; }
-        public decimal Price { get; set; }
-        public int CategoryId { get; set; } // Kategori ID'si güncelleme için gerekli
+
+        public AuthorDto Author { get; set; }
+        public PriceDto Price { get; set; }
+
+        public int CategoryId { get; set; }
     }
+
 }
