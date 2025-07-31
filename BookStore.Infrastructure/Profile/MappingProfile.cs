@@ -14,7 +14,7 @@ public class MappingProfile : Profile
     {
         // Category
         CreateMap<Category, CategoryDto>().ReverseMap();
-        CreateMap<Category, CreateCategoryDto>().ReverseMap();
+      //  CreateMap<Category, CreateCategoryDto>().ReverseMap();
         CreateMap<Category, UpdateCategoryDto>().ReverseMap();
 
         // Book → DTO (Display için)
@@ -41,6 +41,7 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.Author, opt => opt.MapFrom(src => new Author(src.Author.FirstName, src.Author.LastName)))
             .ForMember(dest => dest.Price, opt => opt.MapFrom(src => new Price(src.Price.Amount, src.Price.Currency)))
             .ForMember(dest => dest.Category, opt => opt.Ignore());
+
 
     }
 

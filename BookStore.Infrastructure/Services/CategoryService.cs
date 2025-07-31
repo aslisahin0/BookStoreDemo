@@ -21,7 +21,8 @@ namespace BookStore.Infrastructure.Services
 
         public async Task<CategoryDto> CreateAsync(CreateCategoryDto dto)
         {
-            var entity = _mapper.Map<Category>(dto);
+            //var entity = _mapper.Map<Category>(dto);
+            var entity = Category.Create(dto.Name); // Domain kuralını kullandık
             await _unitOfWork.CategoryRepository.AddAsync(entity);
             await _unitOfWork.SaveChangesAsync();
             return _mapper.Map<CategoryDto>(entity);
