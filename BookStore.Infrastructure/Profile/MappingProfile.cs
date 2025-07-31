@@ -31,6 +31,17 @@ public class MappingProfile : Profile
             }))
             .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name));
 
+
+        CreateMap<CreateBookDto, Book>()
+            .ForMember(dest => dest.Author, opt => opt.MapFrom(src => new Author(src.Author.FirstName, src.Author.LastName)))
+            .ForMember(dest => dest.Price, opt => opt.MapFrom(src => new Price(src.Price.Amount, src.Price.Currency)))
+            .ForMember(dest => dest.Category, opt => opt.Ignore()); // Genelde dışarıdan inject edilir
+
+        CreateMap<UpdateBookDto, Book>()
+            .ForMember(dest => dest.Author, opt => opt.MapFrom(src => new Author(src.Author.FirstName, src.Author.LastName)))
+            .ForMember(dest => dest.Price, opt => opt.MapFrom(src => new Price(src.Price.Amount, src.Price.Currency)))
+            .ForMember(dest => dest.Category, opt => opt.Ignore());
+
     }
 
 }
