@@ -11,10 +11,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+
+builder.Services.AddControllers()
+    .AddNewtonsoftJson();
+
 builder.Services.AddEndpointsApiExplorer();
 
 
