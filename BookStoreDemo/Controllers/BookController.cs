@@ -78,7 +78,7 @@ namespace BookStoreDemo.Controllers
         public async Task<IActionResult> Create([FromBody] CreateBookDto dto)
         {
             var result = await _bookService.CreateAsync(dto);
-            return Ok(new FunctionResultWithData<CreateBookDto>
+            return Ok(new FunctionResultWithData<BookDto>
             {
                 IsSuccess = true,
                 Message = "Kitap başarıyla oluşturuldu.",
@@ -91,19 +91,17 @@ namespace BookStoreDemo.Controllers
         {
             
             var result = await _bookService.UpdateAsync(id, dto);
-            if (!result)
-            {
-                return NotFound(new FunctionResult
-                {
-                    IsSuccess = false,
-                    Message = "Kitap bulunamadı."
-                });
-            }
-            return Ok(new FunctionResult
-            {
-                IsSuccess = true,
-                Message = "Kitap başarıyla güncellendi."
-            });
+            return result
+       ? Ok(new FunctionResult
+       {
+           IsSuccess = true,
+           Message = "Kitap başarıyla güncellendi."
+       })
+       : NotFound(new FunctionResult
+       {
+           IsSuccess = false,
+           Message = "Kitap bulunamadı."
+       });
         }
 
 

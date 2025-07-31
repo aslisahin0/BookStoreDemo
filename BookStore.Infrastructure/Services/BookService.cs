@@ -3,6 +3,7 @@ using BookStore.Application.DTOs;
 using BookStore.Application.Interfaces;
 using BookStore.Application.Interfaces.Service;
 using BookStore.Core.Entities;
+using BookStore.Core.ValueObjects.BookStore.Core.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,12 +22,21 @@ namespace BookStore.Infrastructure.Services
             _mapper = mapper;
         }
 
-        public async Task<CreateBookDto> CreateAsync(CreateBookDto dto)
+        public async Task<BookDto> CreateAsync(CreateBookDto dto)
         {
-            var entity = _mapper.Map<Book>(dto);
-            await _unitOfWork.BookRepository.AddAsync(entity);
+            var category = await _unitOfWork.CategoryRepository.GetByIdAsync(dto.CategoryId);
+            if (category == null)
+                throw new ArgumentException("Geçersiz kategori.");
+
+            var author = new Author(dto.Author.FirstName, dto.Author.LastName);
+            var price = new Price(dto.Price.Amount, dto.Price.Currency);
+
+            var book = Book.Create(dto.Title, author, price, category);
+
+            await _unitOfWork.BookRepository.AddAsync(book);
             await _unitOfWork.SaveChangesAsync();
-            return _mapper.Map<CreateBookDto>(entity);
+
+            return _mapper.Map<BookDto>(book);
         }
 
         public async Task<bool> DeleteAsync(int id)
@@ -65,7 +75,18 @@ namespace BookStore.Infrastructure.Services
             var entity = await _unitOfWork.BookRepository.GetByIdAsync(id);
             if (entity == null) return false;
 
-            _mapper.Map(dto, entity);
+            var category = await _unitOfWork.CategoryRepository.GetByIdAsync(dto.CategoryId);
+            if (category == null)
+                throw new ArgumentException("Geçersiz kategori.");
+
+            // Güncellemeleri entity üzerinden yap (DDD prensibi)
+            entity.UpdateTitle(dto.Title);
+            entity.UpdatePrice(new Price(dto.Price.Amount, dto.Price.Currency));
+            entity.ChangeCategory(category);
+
+            // Author değiştirilebilecekse bu şekilde güncelle
+            entity.ChangeAuthor(new Author(dto.Author.FirstName, dto.Author.LastName));
+
             _unitOfWork.BookRepository.Update(entity);
             await _unitOfWork.SaveChangesAsync();
             return true;
